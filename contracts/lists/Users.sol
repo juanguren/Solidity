@@ -5,27 +5,27 @@ pragma solidity >=0.7.0 <0.9.0;
 contract User {
     struct UserData {
         address id;
-        string full_name;
+        string fullName;
         string role;
         string senior;
-        uint256 years_exp;
+        uint256 yearsExperience;
     }
 
     UserData[] public users;
 
     function uploadMyself(
-        string memory _full_name,
+        string memory _fullName,
         string memory _role,
         string memory _seniority,
-        uint256 years_exp
+        uint256 yearsExperience
     ) public {
         UserData memory newUser;
 
         newUser.id = msg.sender;
-        newUser.full_name = _full_name;
+        newUser.fullName = _fullName;
         newUser.role = _role;
         newUser.senior = _seniority;
-        newUser.years_exp = years_exp;
+        newUser.yearsExperience = yearsExperience;
 
         users.push(newUser);
     }
@@ -38,7 +38,7 @@ contract User {
         for (uint256 i = 0; i < users.length; i++) {
             if (users[i].id == msg.sender) {
                 UserData memory data = users[i];
-                return (true, data.full_name);
+                return (true, data.fullName);
             }
         }
 
